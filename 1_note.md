@@ -8,6 +8,7 @@ command to generate keypair
 
 ````
 ssh-keygen -f <file-name>
+``````
 
 command is generates by gitbash gitbash is nothing but mini linux in windows which will be login to /c/users/username
 
