@@ -101,8 +101,60 @@ PRwATh2MQSMAAAAMc2FpZGVAU0FJREVWAQIDBAUGBw==
 ````````````````````
 
 
-# firewalls: is nothing but security group
+# firewalls: is nothing but security group: create allow-all sg
 
+----------------------------------------
+
+1. Create an instance.
+2. Linux is not an operating system; it is a kernel.
+
+# OS vs. Kernel
+
+1. Kernel - connects to hardware; no utilities or shell included.
+2. Linus Torvalds - creator of Linux.
+3. Unix - very costly and tightly coupled to hardware.
+4. Linux kernel - based on Unix principles but written from scratch in the C programming language.
+5. Open source software.
+
+
+1. kernal+package+shell =os
+2. android is flovour of linux
+3. kernal+packge+shell+ui
+
+# ubuntu
+desktop= kernal +shell+ui
+server= kernal + shell
+centos
+rhel
+fedora
+suse
+arch linux
+99% same ==> few commands only will differ
+
+RHEL== open sourse ==but not free
+code open sourse -take the code
+
+support --immediate call
+
+community edition:
+RHEL = centos =fedora=almalinux
+
+RHEL = code =os centsos =internet community
+
+============================================================
+# connecting linux server
+ip addrees
+username =ec2-user
+private-key
+
+# ssh -i <path-to-private-key> username@ip
+# ssh -i meen.pem ec2-user@ipaddress  
+# using gitbash as client to connect server
+# protocol = ssh  =22
+# protocal = ip address port no
+
+
+# absolutpath vs relative path
 
 
 
