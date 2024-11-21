@@ -16,7 +16,9 @@ give ssh-keygen -f daws-76s in gitbash if ask for enter passphrase dont need to 
 # now two files will generated those are
 
 ``````
+`````
 daws-76s.pub and daws-76s
+`````
 
 
 
