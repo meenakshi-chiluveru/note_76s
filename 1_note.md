@@ -21,6 +21,10 @@ give ssh-keygen -f daws-76s in gitbash if ask for enter passphrase dont need to 
 `````
 daws-76s.pub and daws-76s
 `````
-
+````````````````````
+# enable extensions to files
+`````
+controlpanel - file explorar -view - untick hide file extensions for known files
+`````
 
 
