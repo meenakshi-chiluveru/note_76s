@@ -1,37 +1,43 @@
-Linux uses an SSH authentication mechanism that involves a pair of keys: a public key and a private key.ey
+Linux uses an SSH authentication mechanism that involves a pair of keys: a public key and a private key. The Linux server is often referred to as the "server" or "box."
 
-linux server is known as server or box
+The public key will be stored on the Linux box, while the private key will be kept secure with you.
 
-public key will be in linux box and private key be with me
+To generate a key pair, use the following command:
 
-command to generate keypair
-
-````
+```bash
 ssh-keygen -f <file-name>
-``````
+```
 
-command is generates by gitbash gitbash is nothing but mini linux in windows which will be login to /c/users/username
+This command can be executed in Git Bash, which is essentially a mini Linux environment in Windows. By default, Git Bash will log in to the path `/c/users/username`.
 
-give ssh-keygen -f daws-76s in gitbash if ask for enter passphrase dont need to give click enter
+To generate a key pair named "daws-76s," you would enter the command:
 
+```bash
+ssh-keygen -f daws-76s
+```
 
+If prompted for a passphrase, you can simply press enter to skip this step.
 
-``````
-# now two files will generated those are
-````````````````
-`````
-daws-76s.pub and daws-76s
-`````
+After executing the command, two files will be generated:
+
+- `daws-76s.pub` (the public key)
+- `daws-76s` (the private key)
 ````````````````````
-# enable extensions to files
-`````
-controlpanel - file explorar -view - untick hide file extensions for known files
-`````
-public key syntax -ssh-rsa <code> <laptop-name>
+# Enabling File Extensions for Known File Types
+To enable file extensions for known file types, follow these steps:
+1. Open the Control Panel.
+2. Navigate to File Explorer Options.
+3. Go to the "View" tab and uncheck the option "Hide extensions for known file types."
 
-=================================
-EC2: service from aws by which we can create servers in aws aws everything will resource
-import keypair to was
+## Public Key Syntax
+The syntax for a public key is as follows:
+```
+ssh-rsa <code> <laptop-name>
+```
+
+## Overview of Amazon EC2
+
+Amazon EC2 (Elastic Compute Cloud) is a service provided by AWS that enables you to create and manage virtual servers. With EC2, you can easily provision and scale resources according to your needs. Remember to import your key pair to AWS to ensure secure access.
 
 
 # public key
@@ -94,3 +100,7 @@ PRwATh2MQSMAAAAMc2FpZGVAU0FJREVWAQIDBAUGBw==
 -----END OPENSSH PRIVATE KEY-----
 
 `````
+````
+#firewalls
+`````
+
