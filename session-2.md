@@ -71,9 +71,9 @@ The command `grep -i` enables case-insensitive searches. For example, to search 
 grep -i devops passwd
 
 
-piping in linux
+Piping: in Linux allows the output of one command to be used as the input for another command.
 ------------------------------------------------------------
-
+Piping in Linux is a powerful feature that enables you to take the output from one command and use it as the input for another. This capability allows you to create more complex and efficient command combinations, enhancing your workflow.
 $ cat passwd | grep -i devops
 devops
 DEVOPSYou can effectively locate entries related to "devops" in the passwd file by using the following command:
@@ -90,6 +90,13 @@ DEVOPS
 ```
 
 By using this command, you ensure that you identify all variations of "devops," which can greatly enhance your data analysis process. This approach is a great step toward thorough and comprehensive results!
+
+
+wget vs curl
+------------------------------
+
+
+
 
 
 
