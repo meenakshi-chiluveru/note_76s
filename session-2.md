@@ -65,6 +65,15 @@ mv oldfilename newfilename
 
 In this case, "oldfilename" is the current name of the file, and "newfilename" is what you want the file to be called after the operation. This dual functionality makes the 'mv' command a versatile tool for managing files and directories effectively.
 
+grep is used to filter text in files. The syntax for using grep is: grep [word] [filename]. For example, to find the word "bin" in the file "passwd," you would use the command: grep bin /etc/passwd. The command `cat /etc/passwd` displays user information in Linux.
+# linux is bydefault case sensitive
+The command `grep -i` enables case-insensitive searches. For example, to search for the term "devops" in the file "passwd," you would use the command:
+grep -i devops passwd
+
+
+piping in linux
+------------------------------------------------------------
+
 
 
 
