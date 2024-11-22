@@ -92,8 +92,36 @@ DEVOPS
 By using this command, you ensure that you identify all variations of "devops," which can greatly enhance your data analysis process. This approach is a great step toward thorough and comprehensive results!
 
 
-wget vs curl
-------------------------------
+Wget vs. Curl  
+------------------------------  
+Wget is a powerful tool for downloading files and can be used with the command: `wget https://github.com/git-for-windows/git/releases/download/v2.47.0.windows.2/Git-2.47.0.2-64-bit.exe`. It is particularly useful for downloading entire websites or files recursively.
+
+On the other hand, Curl is designed to transfer data and is commonly used for fetching content directly to the terminal. This makes it a great choice for quickly viewing or manipulating text data from a URL. 
+
+Both tools have their unique strengths, so choosing between them depends on your specific needs!
+
+### Understanding `cut` and `awk`
+
+`cut` and `awk` are powerful command-line utilities used for text processing in Unix-like systems. They allow users to extract specific sections or "fragments" of data from lines of text, often based on a delimiter.
+
+#### Using `cut`
+The `cut` command extracts portions of each line based on a specified delimiter. The syntax for `cut` is as follows:
+
+```
+cut -d [delimiter] -f [field_number]
+```
+
+**Example:**
+Consider the following command:
+```
+echo hello:meenakshi:how:re:you | cut -d : -f1
+```
+This command uses the colon (`:`) as the delimiter and extracts the first field. The output will be:
+```
+hello
+```
+
+This functionality is particularly useful when working with structured data, such as CSV files or system logs, where specific fields are separated by a character.
 
 
 
