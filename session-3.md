@@ -156,7 +156,31 @@ This should display his home directory, typically shown as:
 
 This comprehensive guide outlines the steps involved in user management and SSH configuration in a DevOps environment, ensuring that new users can be set up securely and efficiently.
 
+To create a new user group named "devops," you would use the command:
 
+```bash
+groupadd devops
+```
+
+It's important to note that each user on the system is assigned a primary group and can be associated with one or more secondary groups. For example, if we want to add a user named "ramesh" to the "devops" group, we can accomplish this with the following command:
+
+```bash
+usermod -g devops ramesh
+```
+
+After executing this command, you can verify ramesh's group assignments using the command:
+
+```bash
+id ramesh
+```
+
+Now, regarding file ownership, the `chown` command is used to change the owner of a file. However, it's essential to understand that even the owner of a file is unable to modify its ownership unless they have the proper permissions. Only a user with sudo privileges can perform ownership changes. To change the ownership of a file named "example" to ramesh and set the group to "devops," you would use the following command:
+
+```bash
+chown ramesh:devops example
+```
+
+This command will ensure that ramesh becomes the owner of the file, and the file will be associated with the devops group.
 
 
 
