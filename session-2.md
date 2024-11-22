@@ -74,6 +74,22 @@ grep -i devops passwd
 piping in linux
 ------------------------------------------------------------
 
+$ cat passwd | grep -i devops
+devops
+DEVOPSYou can effectively locate entries related to "devops" in the passwd file by using the following command:
+
+```
+cat passwd | grep -i devops
+```
+
+This will provide you with the results:
+
+```
+devops
+DEVOPS
+```
+
+By using this command, you ensure that you identify all variations of "devops," which can greatly enhance your data analysis process. This approach is a great step toward thorough and comprehensive results!
 
 
 
