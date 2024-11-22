@@ -21,8 +21,8 @@ mkdir - craetes folder
 cat > "filename"  -- file will open
 enter the content
 enter ctrl+d -to save
-> symbol always replaces the content
->> - always append content
+(>) symbol always replaces the content
+(>>)_ - always append content
 # to read file
 cat filename
 
