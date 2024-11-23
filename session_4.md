@@ -35,5 +35,37 @@ Focusing specifically on NGINX, a widely utilized web server known for its perfo
 
 A comprehensive understanding of these commands, in conjunction with effective port management practices, is essential for ensuring high availability, performance, and security of services within any computer system or network environment.
  
+ network management
+ ---------------------------------------
+The `netstat` command is an essential tool for managing and monitoring network connections on a computer. It provides a wealth of information about the status of various network ports and their associated programs. Here’s a detailed explanation of the command you referenced:
+
+### Command:
+```bash
+netstat -lntp
+```
+
+### Explanation of the Flags:
+- **`-l` (listening)**: This option filters the output to display only ports that are currently in the listening state, meaning they are ready to accept incoming connections.
+- **`-n` (numeric)**: This flag ensures that IP addresses and port numbers are presented in numeric format, bypassing the resolution of hostnames or service names. This can speed up the output and is useful when you need raw numerical data.
+- **`-t` (TCP)**: By specifying this option, the command is limited to show only TCP (Transmission Control Protocol) connections, which are a key protocol for most internet communications.
+- **`-p` (program)**: This option reveals the Process ID (PID) along with the name of the program or service that is bound to each listening port, allowing you to identify which applications are using which network resources.
+
+### Usage Example:
+To execute the command, simply open your terminal and type the following line:
+
+```bash
+sudo netstat -lntp
+```
+
+When you run this command, it will generate an output that lists all the currently listening TCP ports along with their respective programs. In the output, you can find the specific port you’re interested in under the "Local Address" column to verify if it's open and being actively monitored.
+
+### Alternative with `ss`:
+For those who prefer a more modern approach, the `ss` command serves as a faster and more efficient alternative to `netstat`:
+
+```bash
+sudo ss -lntp
+```
+
+Like `netstat`, this command provides similar output but tends to deliver results more quickly and with a more user-friendly display. It’s a great option for real-time network diagnostics and monitoring.
  
  
