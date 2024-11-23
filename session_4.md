@@ -67,5 +67,77 @@ sudo ss -lntp
 ```
 
 Like `netstat`, this command provides similar output but tends to deliver results more quickly and with a more user-friendly display. It’s a great option for real-time network diagnostics and monitoring.
- 
+
+toubleshooting
+----------------------------------------
+**System Resource Monitoring:**
+
+1. **CPU Usage:**
+   - Assess the current load on the system's CPU to understand how much processing power is being utilized.
+
+2. **Memory Utilization:**
+   - Monitor the usage of system memory to determine how much is currently in use versus how much is available for applications.
+
+3. **Hard Disk Space Availability:**
+   - Check the storage capacity of the hard drive to see how much space is left and if it is nearing its full capacity.
+
+4. **RAM Status:**
+   - Evaluate the status of the RAM to identify if it is at capacity or if there is still available memory for running processes.
+
+5. **Process Status:**
+   - Verify whether a specific process is currently running or not, which can impact overall system performance.
+
+6. **Network Port Status:**
+   - Confirm if specific network ports are open or closed, as this can affect connectivity and communication between applications.
+
+7. **Firewall Configuration:**
+   - Check if the firewall is open or closed to ensure that it is configured properly for security while allowing necessary traffic.
+
+8. **File System Information:**
+   - Utilize the command `df -HT` to display detailed information about the file system, including disk usage and available space across different partitions.
+
+9. **Memory Availability:**
+   - Execute the command `free -m` to show a summary of memory usage in megabytes, including total, used, and free memory resources. 
+
+This more detailed breakdown provides insight into each of these crucial system resources and their current statuses.
+
+"Ping: This confirms whether your internet access is functioning properly."
+
+
+how to give access to linux user
+----------------------------------
+
+
+**Granting Access to Linux Users**
+
+When managing user access on a Linux system, it's essential to define roles clearly to maintain security and operational efficiency. Here’s how to set up different levels of access for various users:
+
+1. **Linux Administrator**
+   - The Linux Administrator should be granted full access to the Linux system. This role requires unrestricted privileges to perform all necessary administrative tasks.
+
+2. **DevOps Administrator**
+   - The DevOps Admin will have limited sudo access. This user should be able to run specific commands with elevated privileges, specifically:
+     - `yum` (for package management)
+     - `systemctl` (for managing system services)
+
+3. **User Accounts**
+   - **Ramesh**: This user needs administrative privileges. To achieve this, add Ramesh to the `wheel` group, which is typically configured to allow full administrative rights.
+   - **Suresh**: This user will be designated as a DevOps user and should have the same limited sudo access as the DevOps Administrator.
+
+4. **Modifying the Sudoers File**
+   - To implement these access controls, you'll need to edit the `/etc/sudoers` file. It's crucial to use the `visudo` command to make these edits safely, as it checks for syntax errors before saving.
+   - The following line should be added to set the appropriate permissions for the admin group:
+     ```
+     %admin ALL=(ALL) /usr/bin/yum,/usr/bin/systemctl
+     ```
+   - If you need to create more specific rules or manage permissions for other users or groups, consider adding configurations in the `/etc/sudoers.d/` directory for better organization and clarity.
+
+By following these guidelines, you can manage user permissions effectively while maintaining the security and integrity of your Linux system.
+
+
+
+
+
+
+
  
