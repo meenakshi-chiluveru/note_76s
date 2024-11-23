@@ -195,7 +195,62 @@ Always ensure to follow proper procedures when modifying user and group settings
 to change ownership to folder
 To change the ownership of a folder and all of its contents recursively, use the command: `chown user:group -R folder`. This command assigns the specified user and group as the new owners of the folder and every file and subfolder it contains.
 
+To enable SSH access for a new user through a public key, follow these detailed steps:
 
+1. **Generate SSH Keys**: Start by generating a pair of SSH keys (a public key and a private key). It's important to keep the private key secure. Request the public key from the person who will be logging in.
+
+2. **Set Up the SSH Directory**: Navigate to the newly created user's home directory:
+   ```bash
+   cd /home/raheem
+   ```
+   Create a directory named `.ssh`, which will store the user's SSH keys:
+   ```bash
+   mkdir .ssh
+   ```
+
+3. **Set Permissions**: Ensure that the `.ssh` directory has the correct permissions by running the following command:
+   ```bash
+   chmod -R 700 .ssh
+   ```
+
+4. **Generate the Key Pair**: Use the SSH key generation command to create the key pair. Make sure to use the correct command, `ssh-keygen`:
+   ```bash
+   ssh-keygen -f raheem
+   ```
+
+5. **List Files**: After generating the keys, list the contents of the current directory to confirm:
+   ```bash
+   ls -la
+   ```
+
+6. **Navigate to the .ssh Directory**: Move into the newly created `.ssh` directory:
+   ```bash
+   cd .ssh/
+   ```
+
+7. **Edit the Authorized Keys File**: Open the `authorized_keys` file in a text editor, such as `vim`, to store the public key:
+   ```bash
+   vim authorized_keys
+   ```
+
+8. **Paste the Public Key**: Paste the public key provided by the user into the `authorized_keys` file. This will enable SSH access using the corresponding private key.
+
+9. **Set Permissions on Authorized Keys**: Secure the `authorized_keys` file by setting the appropriate permissions:
+   ```bash
+   chmod 400 authorized_keys
+   ```
+
+10. **Adjust Ownership**: Ensure that the `.ssh` directory and its contents are owned by the user "raheem":
+    ```bash
+    chown -R raheem:raheem .ssh
+    ```
+
+11. **SSH into the User Account**: Finally, to connect to the server as "raheem," use the following command, replacing `ipaddress` with the actual IP address of the server:
+    ```bash
+    ssh -i raheem raheem@ipaddress
+    ```
+
+By following these steps, you can successfully set up SSH access for the user "raheem" using a private key.
 
 process management
 --------------------------------------------
@@ -252,3 +307,51 @@ kill -9 [process ID]
 ```
 
 The `-9` option sends a SIGKILL signal, which forcefully stops the process immediately, bypassing any cleanup operations. Use this command cautiously, as it may lead to data loss or corruption.
+
+
+### Package Management Overview
+
+When managing software packages on systems like Red Hat Enterprise Linux (RHEL), CentOS, Fedora, or Amazon Linux 2, the `yum` package manager is a critical tool. Here’s a brief guide on how to use `yum` effectively:
+
+- **Installing Packages:** To install a specific package, use the command:
+  ```
+  yum install <packagename>
+  ```
+  Replace `<packagename>` with the name of the software you wish to install.
+
+- **Checking Installed Packages:** If you need to see which packages are currently installed on your system, you can run:
+  ```
+  yum list installed
+  ```
+  To filter this list and find a specific package, such as Git, use:
+  ```
+  yum list installed | grep git
+  ```
+
+- **Listing Available Packages:** To view all packages that are available for installation, use:
+  ```
+  yum list available
+  ```
+
+- **Counting Available Packages:** If you want to know how many packages are available, you can count them with:
+  ```
+  yum list available | wc -l
+  ```
+
+- **Searching for Specific Software:** If you’re looking for a particular package, like MySQL, you can search for it using:
+  ```
+  yum search MySQL
+  ```
+
+- **Removing Packages:** To uninstall a package, such as Git, you can execute:
+  ```
+  yum remove git -y
+  ```
+  The `-y` flag automatically confirms the removal without prompting.
+
+- **Installing Web Server:** To quickly set up an Nginx web server, you can run the command:
+  ```
+  yum install nginx -y
+  ```
+
+By utilizing these commands, you can effectively manage software on your Linux system.
