@@ -192,5 +192,8 @@ If you also need to delete a group (for instance, a group named "ramesh"), you c
 
 Always ensure to follow proper procedures when modifying user and group settings within your organization.
 
+to change ownership to folder
+To change the ownership of a folder and all of its contents recursively, use the command: `chown user:group -R folder`. This command assigns the specified user and group as the new owners of the folder and every file and subfolder it contains.
+
 
 
