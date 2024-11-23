@@ -228,5 +228,13 @@ When we use the command `echo hello`, we are instructing the system to print the
 To create a new process ID, an example PID could be 2345, which would be associated with the `bash` shell that initiated the command.
 
 If we want to see a comprehensive list of all running processes in Linux, we can use the command `ps -ef`. This provides detailed information about each active process, which can help us monitor system activity effectively.
+
+In Linux, processes can be categorized into two main types: 
+
+1. **Foreground Process**: This type of process runs in the foreground and is directly associated with the terminal session. It takes input from the user and displays output directly in the terminal. Users can interact with it, pausing or stopping it as needed.
+
+2. **Background Process**: In contrast, a background process runs independently of the terminal session. It operates behind the scenes, allowing the user to continue using the terminal for other tasks. Background processes are often initiated with a specific command to run in the background.
+
+To check whether a specific process, such as "jenkins," is currently running, you can use the command `ps -ef | grep jenkins`. This command lists all running processes, and the `grep` command filters the results to show only those related to "jenkins."
  
 
