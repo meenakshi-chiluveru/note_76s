@@ -237,4 +237,18 @@ In Linux, processes can be categorized into two main types:
 
 To check whether a specific process, such as "jenkins," is currently running, you can use the command `ps -ef | grep jenkins`. This command lists all running processes, and the `grep` command filters the results to show only those related to "jenkins."
  
+When a process becomes unresponsive and gets stuck, it's necessary to terminate it to free up system resources. You can use the command:
 
+```
+kill [process ID]
+```
+
+This command allows you to target a specific process instance by its unique ID. It's important to ensure that you only terminate the intended process and avoid interfering with its parent process.
+
+If the process remains unresponsive and does not terminate with the regular kill command, you can forcefully terminate it using the following command:
+
+```
+kill -9 [process ID]
+```
+
+The `-9` option sends a SIGKILL signal, which forcefully stops the process immediately, bypassing any cleanup operations. Use this command cautiously, as it may lead to data loss or corruption.
