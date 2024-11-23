@@ -134,10 +134,54 @@ When managing user access on a Linux system, it's essential to define roles clea
 
 By following these guidelines, you can manage user permissions effectively while maintaining the security and integrity of your Linux system.
 
+**Three-Tier Architecture**
+
+**Desktop Applications**  
+- **Microsoft Office**: A suite of productivity applications that includes Word, Excel, PowerPoint, and more, commonly used for document creation, data analysis, and presentations.  
+- **Media Players**: Software applications designed to play audio and video files, providing users with a platform for entertainment and media consumption.  
+- **Editors**: Applications such as text editors and integrated development environments (IDEs), used for creating and modifying text, code, and other digital content.  
+
+**Disadvantages of Desktop Applications**  
+- **Increased Resource Requirements**: Desktop applications typically consume more CPU and RAM, which can strain system performance, especially if multiple applications are running concurrently.  
+- **Installation Necessity**: Each application must be installed individually on the user’s device, which can be time-consuming and may require administrative privileges.  
+- **Frequent Upgrades**: Regular updates are often needed to ensure functionality, security, and compatibility, adding to the maintenance burden for users.  
+- **Data Storage Risks**: Users may risk losing data if their local storage fails or becomes corrupted, as data is often saved on the device rather than on the cloud.  
+- **Limited Portability**: Desktop applications generally restrict users to a specific location, making it challenging to access work or collaborate remotely, unlike cloud-based solutions that allow flexibility and mobility.  
 
 
+**Web Applications Overview**  
+---------------------------  
+In the realm of productivity tools, Google Sheets and Google Docs stand out as popular web applications that facilitate collaboration and easy document management. Microsoft Office also offers a suite of powerful applications for word processing, spreadsheets, and presentations, making it a staple in both personal and professional environments.
 
+**Hotel Business Strategy**  
+---------------------------  
+In the hotel industry, the key to success lies in understanding the equation: more people translates to more food served, which results in increased revenue and enhanced quality of service. Efficiently managing resources is crucial to achieve this balance.
 
+1. **Cook/Cashier/Customer Management at Roadside Stands**  
+   We can serve approximately 10 customers at a time. Proper preparation and efficient cooking processes are essential; without them, we risk losing potential profits.  
 
+2. **Hotel Operations**  
+   A typical setup may include one dedicated employee in the cooking role, while the owner primarily oversees customer interactions, token management, and monetary transactions. In this scenario, we are equipped to manage up to 20 patrons effectively.
 
+3. **Restaurant Environment**  
+   The structure of a restaurant often includes specific roles:
+   - **Captain:** Responsible for customer service and ensuring a satisfactory dining experience.
+   - **Waiter:** Takes orders and assists customers throughout their meal.
+   - **Chef:** Prepares food from raw ingredients.
+
+   This setting typically requires at least one server to streamline service.
+
+**Database Management**  
+---------------------------  
+When it comes to managing databases, traditional table formats can be confusing for users. A more user-friendly web application interface allows for simple data entry through fields for usernames and passwords. This user-centric design supports data insertion into the database efficiently.
+
+**Technological Framework**  
+---------------------------  
+For a cohesive application experience, both the front end and back end need to work together seamlessly. The front end can be developed using technologies like HTML, JavaScript, AngularJS, or ReactJS, while the back end can utilize programming languages such as Java, .NET, Python, or Node.js. Combining front-end and back-end technologies creates a single application that can offer a comprehensive user experience.
+
+**Challenges in Operations**  
+---------------------------  
+One of the significant challenges businesses face is queue management, as it can be complex and time-consuming. Additionally, maintaining security is crucial, especially because customers might seek to replicate your unique recipes.
+
+When both the database and application reside on a single server, it is essential to efficiently manage the load to ensure seamless performance. Implementing a load balancer could help distribute incoming traffic appropriately, improving overall reliability and responsiveness of the application.
  
