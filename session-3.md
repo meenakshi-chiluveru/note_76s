@@ -197,3 +197,36 @@ To change the ownership of a folder and all of its contents recursively, use the
 
 
 
+process management
+--------------------------------------------
+everything in linux is process
+teamleader
+team manager
+account manager
+senior eng
+junior eng
+traine
+
+team leader - 1 ticket created about devops pipeline setup =1
+senior engineer =1
+subtask -2 -junjor engineer
+subtask =3 - -junjor engineer-2
+=========================
+In Linux, whenever we initiate any action or command, the system generates a unique Process ID (PID) that is reported back to us. For example, if we run the command `ps`, we can view the list of currently active processes along with their respective PIDs. Here’s a sample output:
+
+```
+PID TTY TIME CMD
+3720 pts/0 00:00:00 sudo
+3721 pts/0 00:00:00 bash
+3738 pts/0 00:00:00 ps
+```
+
+In this output, you can see that the PID for the `sudo` command is 3720, while the `bash` shell has a PID of 3721, and the `ps` command itself is assigned a PID of 3738.
+
+When we use the command `echo hello`, we are instructing the system to print the text "hello" to the terminal. This task is also assigned a PID for tracking.
+
+To create a new process ID, an example PID could be 2345, which would be associated with the `bash` shell that initiated the command.
+
+If we want to see a comprehensive list of all running processes in Linux, we can use the command `ps -ef`. This provides detailed information about each active process, which can help us monitor system activity effectively.
+ 
+
