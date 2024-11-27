@@ -4,5 +4,12 @@ give root access to instances using sudo su -
 ```````````````
  dnf install nginx -y
 `````````````````
+2. enable and start the nginx service
 
+``````````
+systemctl enable nginx
+`````````````````
 
+`````````````````
+systemctl start nginx
+````````````````````
