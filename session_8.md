@@ -48,3 +48,94 @@
 By following these steps, you will have successfully set up a web server using Nginx. Make sure to customize it further according to your application needs!
  ````````
    
+To download the project application code, please follow these steps to ensure it is saved in the temporary directory:
+
+1. Open your terminal or command prompt.
+2. Use the following command to download the application code as a zip file:
+
+   ```bash
+   curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+   ```
+
+   In this command, replace `https://roboshop-builds.s3.amazonaws.com/web.zip` with the actual URL where the project application code is hosted. This will download the zip file directly into the `/tmp` directory on your system. After downloading, you can navigate to that directory to
+access the project files.
+
+1. **Navigate to the Nginx HTML Directory**  
+   Open your terminal and change your directory to where Nginx serves its HTML files. You can do this by executing the following command:  
+   ```bash
+   cd /usr/share/nginx/html
+   ```
+
+2. **Extract the Application Files**  
+   Once you are in the correct directory, you need to extract the contents of the application package. If you have a ZIP file containing the application in the `/tmp` directory, you can extract it using the `unzip` command. Run the following command to unzip the file:  
+   ```bash
+   unzip /tmp/web.zip
+   ```  
+   This will unpack all the files from `web.zip` into the current directory. Make sure to check for any additional files or directories created after extraction, as they may contain important components for your application.
+
+To set up an Nginx reverse proxy configuration for your application, follow these detailed steps:
+
+1. **Create or Edit the Nginx Configuration File**: Open your terminal and create or edit the configuration file located at `/etc/nginx/default.d/roboshop.conf`. You can do this using the `vim` text editor:
+
+   ```bash
+   vim /etc/nginx/default.d/roboshop.conf
+   ```
+
+2. **Configure Proxy Settings**: In the configuration file, add the following content to define how Nginx will handle incoming traffic. This includes settings for image expiration, API forwarding, and health status reporting.
+
+   ```nginx
+   # Set the HTTP version for proxying
+   proxy_http_version 1.1;
+
+   # Configuration for image requests
+   location /images/ {
+       expires 5s;  # Set the expiration time for cached images to 5 seconds
+       root /usr/share/nginx/html;  # Define the root directory for images
+       try_files $uri /images/placeholder.jpg;  # Serve a placeholder image if the requested image doesn't exist
+   }
+
+   # API endpoint for catalogue services
+   location /api/catalogue/ {
+       proxy_pass http://localhost:8080/;  # Forward requests to the local service running on port 8080
+   }
+
+   # API endpoint for user services
+   location /api/user/ {
+       proxy_pass http://localhost:8080/;  # Proxy to the local service
+   }
+
+   # API endpoint for cart services
+   location /api/cart/ {
+       proxy_pass http://localhost:8080/;  # Proxy to the local service
+   }
+
+   # API endpoint for shipping services
+   location /api/shipping/ {
+       proxy_pass http://localhost:8080/;  # Proxy to the local service
+   }
+
+   # API endpoint for payment services
+   location /api/payment/ {
+       proxy_pass http://localhost:8080/;  # Proxy to the local service
+   }
+
+   # Health check endpoint
+   location /health {
+       stub_status on;  # Enable stub status to monitor health
+       access_log off;  # Disable access logging for this location
+   }
+   ```
+
+3. **Testing and Reloading Configuration**: After saving your changes to the configuration file, it's a good idea to test the Nginx configuration for any syntax errors. You can do this by running:
+
+   ```bash
+   sudo nginx -t
+   ```
+
+   If the test is successful, reload Nginx to apply the new configuration:
+
+   ```bash
+   sudo systemctl reload nginx
+   ```
+
+By following these steps, you will create a functional Nginx reverse proxy that efficiently routes requests to your backend services while also handling static image content and health checks.
