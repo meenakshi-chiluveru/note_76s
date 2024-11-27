@@ -81,6 +81,22 @@ To set up an Nginx reverse proxy configuration for your application, follow thes
    vim /etc/nginx/default.d/roboshop.conf
    ```
 
+proxy_http_version 1.1;
+location /images/ {
+  expires 5s;
+  root   /usr/share/nginx/html;
+  try_files $uri /images/placeholder.jpg;
+}
+location /api/catalogue/ { proxy_pass http://localhost:8080/; }
+location /api/user/ { proxy_pass http://localhost:8080/; }
+location /api/cart/ { proxy_pass http://localhost:8080/; }
+location /api/shipping/ { proxy_pass http://localhost:8080/; }
+location /api/payment/ { proxy_pass http://localhost:8080/; }
+
+location /health {
+  stub_status on;
+  access_log off;
+}
 2. **Configure Proxy Settings**: In the configuration file, add the following content to define how Nginx will handle incoming traffic. This includes settings for image expiration, API forwarding, and health status reporting.
 
    ```nginx
@@ -133,9 +149,16 @@ To set up an Nginx reverse proxy configuration for your application, follow thes
    ```
 
    If the test is successful, reload Nginx to apply the new configuration:
+To restart the Nginx web server, you need to execute the following command in the terminal. This will stop the Nginx service and then start it again, ensuring that any changes made to the configuration files are applied. Use the command below:
 
-   ```bash
-   sudo systemctl reload nginx
-   ```
+```bash
+sudo systemctl restart nginx
+```
 
-By following these steps, you will create a functional Nginx reverse proxy that efficiently routes requests to your backend services while also handling static image content and health checks.
+Make sure you have the appropriate permissions to run this command, as it often requires superuser access. If there are any issues during the restart, you can check the status of the Nginx service with the command:
+
+```bash
+sudo systemctl status nginx
+```
+
+This command will provide information about whether Nginx is running correctly or if there are any errors that need to be addressed. 
