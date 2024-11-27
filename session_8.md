@@ -13,3 +13,14 @@ systemctl enable nginx
 `````````````````
 systemctl start nginx
 ````````````````````
+
+3. access the service over browser
+
+```````````````
+public-ip:80
+```````````````
+4. remove the default content
+ ``````````````````````````
+ rm -rf /usr/share/nginx/html/*
+ ````````
+   
