@@ -161,4 +161,39 @@ Make sure you have the appropriate permissions to run this command, as it often 
 sudo systemctl status nginx
 ```
 
-This command will provide information about whether Nginx is running correctly or if there are any errors that need to be addressed. 
+This command will provide information about whether Nginx is running correctly or if there are any errors that need to be addressed.
+
+When we want to access a website, the first step involves obtaining its domain name. For example, if we want to visit facebook.com, our device performs a series of checks to resolve the domain name into an IP address.
+
+Initially, the device checks its own local cache to see if it has recently accessed facebook.com and has the corresponding IP address stored. If the address is not found in the local cache, the operating system then queries the Internet Service Provider (ISP) resolver, asking for the IP address associated with facebook.com.
+
+The ISP resolver plays a crucial role in this process. It first examines its own cache to determine if the IP address for facebook.com is available there. If the ISP resolver does not have the address cached, it proceeds to contact the root name servers to obtain the necessary information.
+
+Root servers are foundational components of the Domain Name System (DNS) and are responsible for directing queries to the correct Top-Level Domain (TLD) servers, such as those for .com, .org, etc. There are only 13 root servers worldwide, operated by various organizations that have voluntarily established them. To manage and distribute the load efficiently, these root servers are supported by numerous additional servers that assist with load balancing and redundancy.
+
+Once the request reaches the appropriate TLD server, the ISP resolver can retrieve the IP address for facebook.com and return it to the user's device. This multi-tiered system ensures that domain name resolutions are efficient and reliable, allowing users to access websites promptly.
+
+A TLD, or top-level domain, refers to the last segment of a domain name, which follows the final dot in the address. For instance, in the domain name "example.com," the TLD is ".com." TLDs are integral to the Domain Name System (DNS) and are categorized into several types, including:
+
+1. **Generic TLDs (gTLDs)**: These are the most common and include extensions such as .com, .org, .net, and new gTLDs like .tech, .shop, and .blog.
+  
+2. **Country Code TLDs (ccTLDs)**: These are specific to a country or territory, such as .uk for the United Kingdom, .ca for Canada, and .jp for Japan.
+
+3. **Sponsored TLDs (sTLDs)**: These are specialized domains that are restricted to a particular community and are sponsored by an organization. Examples include .edu for educational institutions and .gov for governmental entities.
+
+Overall, the choice of a TLD can influence perceptions of credibility and trustworthiness, making it an essential aspect of online branding and identity.
+
+The .com top-level domain (TLD) provides crucial information regarding name servers, which are essential components of the Domain Name System (DNS). These name servers play a pivotal role in translating human-readable domain names into IP addresses, enabling browsers to locate and access the resources associated with a specific website. When a domain is registered with a .com TLD, the associated name servers are configured to direct traffic to the correct server hosting the website, ensuring seamless connectivity for users.
+
+**Domain Registrars Overview**
+
+When it comes to registering a domain name for your website, there are several reputable registrars to consider. Here are three popular options:
+
+1. **GoDaddy**: Known as one of the largest domain registrars in the world, GoDaddy offers a wide range of services including domain registration, web hosting, and website builders. They provide a user-friendly interface and often run promotions for new customers, making it easy to find and secure the perfect domain.
+
+2. **Hostinger**: While primarily recognized for its affordable web hosting solutions, Hostinger also offers domain registration services. They provide competitive pricing and a variety of extensions, along with bundled services that can help streamline the process of launching a new website.
+
+3. **Amazon Web Services (AWS)**: AWS, while commonly known for its cloud computing services, also provides domain registration through Route 53. This service is particularly appealing for businesses looking for scalability and reliability, as it integrates seamlessly with other AWS services, making it ideal for tech-savvy users and developers.
+
+Each of these registrars has unique features tailored to different needs, whether you’re a beginner or an experienced web developer.
+
