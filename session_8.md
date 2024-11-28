@@ -201,13 +201,26 @@ Each of these registrars has unique features tailored to different needs, whethe
 Hostinger's responsibility includes providing updates to Meenakshi regarding the domain purchased, which is daw80.online. The nameservers associated with this domain are as follows: ns1.dns-parking.com and ns2.dns-parking.com. Please ensure that Meenakshi is informed of these details for proper domain management and configuration.
 i
 --------------------------------
+To effectively manage our domain using the ISP resolver approach, we are focusing specifically on the ".online" top-level domain (TLD). This process initiates with the ISP resolver, which will be queried to extract detailed information regarding the name servers that are linked to our domain.
 
-isp resolver approach approach .onlineline tld
-isp resolver get name servers
-isp resolver will connect to hostinger
-we are using aws cloud, we need some records automatically created
-we need to do nameservers transformation
-created hosted zone in was ,we got nameservers
-we need to update nameserver in hostinger
-hostinger responsibility to update nameserver with .online TLD
-create A record when serch for daws80.online it goes .online TLD -tld forford this to aws names servrs it will check for ip address and we will get the application 
+Once we obtain these name server details, the ISP resolver will establish a secure connection with our web hosting provider, Hostinger. This connection is vital as it lays the groundwork for the necessary configurations that will support our domain's functionality.
+
+As we operate on Amazon Web Services (AWS) for our cloud infrastructure, we aim to automate the creation of specific DNS records. This automation is critical for efficient domain management, ensuring that updates and changes can be made seamlessly without manual intervention.
+
+A crucial aspect of this process involves transforming the existing name servers to align with our new configurations. After successfully creating a hosted zone in AWS, we acquired a set of name servers that will be tasked with handling all DNS queries related to our domain.
+
+It is now imperative that Hostinger takes action to update the name servers corresponding to our ".online" TLD. This update is essential for proper DNS resolution, ensuring that all incoming traffic is directed to the correct web resources associated with our domain.
+
+Furthermore, we need to establish an A record for our specific domain. When users enter "daws80.online" into their browser, the DNS should accurately resolve this query to the ".online" TLD. The system will then forward the request to the AWS-configured name servers, which are responsible for checking the corresponding IP address. This communication will enable us to direct users to our application smoothly, ensuring they can access the services we provide without any disruption.
+
+
+
+When we search for the domain "joindeveops.online," the process of resolving that request involves several steps. Initially, the browser checks its own cache to see if it has previously stored the IP address associated with that domain. If the information is not found in the browser cache, the request is forwarded to the operating system (OS). The OS then checks its own cache to see if it has the necessary information saved from a prior lookup.
+
+If the OS cache also lacks the needed information, the request is then sent to the Internet Service Provider (ISP) resolver. The ISP resolver first checks its own cache for the IP address associated with "joindeveops.online." If the IP address is still not found, the ISP resolver must escalate the request by querying the root DNS servers.
+
+The root servers play a crucial role in the Domain Name System (DNS) hierarchy. Upon receiving the request, they scan their records to determine the top-level domain (TLD) associated with the query, which in this case is ".online." After identifying the TLD, the root server provides the ISP resolver with the nameservers responsible for handling requests for ".online" domains.
+
+Next, the ISP resolver contacts the nameservers for the ".online" TLD, particularly the nameservers hosted by AWS (Amazon Web Services). These nameservers have the authoritative records for the domain. Once the nameservers receive the query from the ISP resolver, they look up the specific DNS records related to "joindeveops.online."
+
+The nameservers then return the corresponding IP address linked to the domain. With the IP address in hand, the browser can now send a request directly to that IP address, allowing the user to access the desired website. This multi-step resolution process illustrates the complex workings behind simple web browsing.
