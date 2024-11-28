@@ -293,3 +293,79 @@ Understanding the various DNS record types and their purpose is critical for com
 - **Caching Layers**: The ISP and operating system caches intermediate results to optimize DNS resolution time during subsequent requests.
 
 In summary, this multi-layered DNS resolution process ensures that users can access websites quickly and efficiently, with significant reliance on caching at various steps to reduce the load on DNS servers and improve response times.
+
+
+MONGODB INSTALLATION:
+------------------------------
+To launch a new instance, select the T3.Medium instance type, and then connect to it using PuTTY. 
+
+Once you have successfully accessed your instance, proceed to set up the MongoDB repository by creating or editing the repository file. You can do this by using the `vim` text editor. Open the terminal and enter the following command:
+
+```bash
+vim /etc/yum.repos.d/mongo.repo
+```
+
+In the `mongo.repo` file, add the following configuration for MongoDB version 4.2:
+
+```
+[mongodb-org-4.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+gpgcheck=0
+enabled=1
+```
+
+Make sure to replace `https://repo.mongodb.org/yum/redhat/` with the actual URL for the MongoDB repository. 
+
+After making these changes, save and exit the file. This will set up the necessary repository to allow you to install and manage MongoDB on your instance effectively.
+
+
+### Step-by-Step Guide to Install and Configure MongoDB
+
+#### Step 1: Install MongoDB
+To install MongoDB on your server, use the following command:
+```bash
+sudo dnf install mongodb-org -y
+```
+This command utilizes the package manager `dnf` to install the MongoDB package, where the `-y` flag automatically confirms the installation prompts.
+
+#### Step 2: Enable and Start the MongoDB Service
+After installing MongoDB, you need to enable and start the MongoDB service to ensure it starts on boot and runs immediately. Execute the following commands:
+```bash
+sudo systemctl enable mongod
+sudo systemctl start mongod
+```
+- The `enable` command configures the MongoDB service to start automatically during system boot.
+- The `start` command starts the MongoDB service right away.
+
+#### Step 3: Configure MongoDB for Remote Access
+By default, MongoDB is configured to accept connections only from the localhost (the local machine). This is a security measure to restrict access to your database. If you need to allow a remote server to access your MongoDB instance, you'll have to modify the configuration file.
+
+1. Open the MongoDB configuration file in a text editor. You can use `vim` or any other text editor of your choice:
+   ```bash
+   sudo vim /etc/mongod.conf
+   ```
+
+2. Look for the `bindIp` configuration setting that typically looks like this:
+   ```yaml
+   bindIp: 127.0.0.1
+   ```
+   Change this setting to include the IP address of the remote server (0.0.0.0) that you want to allow access. You can specify multiple IP addresses separated by commas. For example:
+   ```yaml
+   bindIp: 127.0.0.1,0.0.0.0
+   ```
+
+3. Save the changes and exit the editor.
+
+#### Step 4: Restart the MongoDB Service
+For the changes to take effect, you need to restart the MongoDB service. Use the following command:
+```bash
+sudo systemctl restart mongod
+```
+This command restarts the MongoDB service to apply the new configuration settings.
+
+By following these steps, you can successfully install MongoDB and configure it to accept connections from a remote server. Always ensure that you follow best practices for security when allowing remote access to your database.
+
+
+catalogue installation:
+------------------------------
