@@ -197,3 +197,17 @@ When it comes to registering a domain name for your website, there are several r
 
 Each of these registrars has unique features tailored to different needs, whether you’re a beginner or an experienced web developer.
 
+
+Hostinger's responsibility includes providing updates to Meenakshi regarding the domain purchased, which is daw80.online. The nameservers associated with this domain are as follows: ns1.dns-parking.com and ns2.dns-parking.com. Please ensure that Meenakshi is informed of these details for proper domain management and configuration.
+i
+--------------------------------
+
+isp resolver approach approach .onlineline tld
+isp resolver get name servers
+isp resolver will connect to hostinger
+we are using aws cloud, we need some records automatically created
+we need to do nameservers transformation
+created hosted zone in was ,we got nameservers
+we need to update nameserver in hostinger
+hostinger responsibility to update nameserver with .online TLD
+create A record when serch for daws80.online it goes .online TLD -tld forford this to aws names servrs it will check for ip address and we will get the application 
