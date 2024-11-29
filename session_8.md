@@ -367,7 +367,8 @@ This command restarts the MongoDB service to apply the new configuration setting
 By following these steps, you can successfully install MongoDB and configure it to accept connections from a remote server. Always ensure that you follow best practices for security when allowing remote access to your database.
 
 ###################
-
+``````````````````````
+`````````````````````````
 
 
 
