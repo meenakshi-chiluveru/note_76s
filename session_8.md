@@ -368,6 +368,145 @@ By following these steps, you can successfully install MongoDB and configure it 
 
 ###################
 ``````````````````````
+catalogue installation:
+------------------------------
+
+**Catalogue Microservice Setup Guide**
+
+The Catalogue microservice is an essential component of the Roboshop application, responsible for serving and managing the list of products. This document outlines the detailed steps necessary to set up and configure the Catalogue service using Node.js.
+
+### Prerequisites
+
+Before proceeding, confirm with the development team the required version of Node.js. The developer indicates that the application is compatible with Node.js version greater than 18.
+
+### Step 1: Install Node.js
+
+By default, your system may have Node.js version 10 installed. To install the desired version (Node.js 18), follow these steps:
+
+1. **Check available Node.js modules**:
+   To view the available Node.js modules, run:
+   ```bash
+   dnf module list
+   ```
+
+2. **Disable the default Node.js module**:
+   Run the following command to disable the existing Node.js 10 module:
+   ```bash
+   dnf module disable nodejs -y
+   ```
+
+3. **Enable the Node.js 18 module**:
+   After disabling the default module, enable the Node.js 18 module:
+   ```bash
+   dnf module enable nodejs:18 -y
+   ```
+
+4. **Install Node.js**:
+   Finally, run the installation command to set up Node.js:
+   ```bash
+   dnf install nodejs -y
+   ```
+
+### Step 2: Configure the Application
+
+The Catalogue application is custom developed by our internal team and does not utilize RPM packages like many other software applications. Therefore, we need to proceed with manual configuration through the following steps.
+
+1. **Create an Application User**:
+   To run the application securely, create a dedicated user. This user will not be used for logging into the server but will serve as a daemon user to execute the Catalogue service:
+   ```bash
+   useradd roboshop
+   ```
+   The choice of the username "roboshop" is intentional, aligning it with the project name.
+
+2. **Establish a Standard Application Directory**:
+   It is customary in our organization to maintain applications in a designated location. Create this directory as follows:
+   ```bash
+   mkdir /app
+   ```
+
+3. **Download Application Code**:
+   Next, download the Catalogue application code into the newly created directory. Use the following command, ensuring you replace `https://roboshop-builds.s3.amazonaws.com/catalogue.zip` with the actual URL to the zip file:
+   ```bash
+   curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+   ```
+   After downloading, navigate to the application directory and unzip the downloaded file:
+   ```bash
+   cd /app
+   unzip /tmp/catalogue.zip
+   ```
+
+4. **Install Application Dependencies**:
+   The Catalogue application has defined dependencies that need to be installed. Use npm to install these dependencies:
+   ```bash
+   cd /app
+   npm install
+   ```
+
+### Step 3: Set Up the SystemD Service for the Catalogue
+
+To manage the Catalogue service using systemd, you need to create a service file with the appropriate configurations.
+
+1. **Create the SystemD Service File**:
+   Open a new service file in your text editor:
+   ```bash
+   vim /etc/systemd/system/catalogue.service
+   ```
+   Add the following configuration to the file:
+   ```ini
+   [Unit]
+   Description=Catalogue Service
+
+   [Service]
+   User=roboshop
+   Environment=MONGO=true
+   Environment=MONGO_URL="mongodb://<MONGODB-SERVER-IPADDRESS>:27017/catalogue"
+   ExecStart=/bin/node /app/server.js
+   SyslogIdentifier=catalogue
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+2. **Reload SystemD Daemons**:
+   After creating the service file, you need to reload the systemd manager configuration to recognize the new service:
+   ```bash
+   systemctl daemon-reload
+   ```
+
+3. **Enable and Start the Catalogue Service**:
+   To ensure the service starts on boot and start it immediately, run the following commands:
+   ```bash
+   systemctl enable catalogue
+   systemctl start catalogue
+   ```
+
+### Step 4: Load Database Schema
+
+For the Catalogue application to function properly, it requires the initial setup of the database schema, typically provided by the development team. You will need the MongoDB client installed for this purpose.
+
+1. **Set Up MongoDB Repository and Install MongoDB Client**:
+   First, create a repository file for MongoDB:
+   ```bash
+   vim /etc/yum.repos.d/mongo.repo
+   ```
+   Add the following content, replacing `https://repo.mongodb.org/yum/redhat/` with the appropriate base URL:
+   ```ini
+   [mongodb-org-4.2]
+   name=MongoDB Repository
+   baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+   gpgcheck=0
+   enabled=1
+   ```
+   Then, install the MongoDB shell:
+   ```bash
+   dnf install mongodb-org-shell -y
+   ```
+
+2. **Load the Database Schema**:
+   Finally, to load the schema into the database, execute the following command, replacing `MONGODB-SERVER-IPADDRESS` with the actual IP address of your MongoDB server:
+   ```bash
+   mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+   ```
 `````````````````````````
 
 
