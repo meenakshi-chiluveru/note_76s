@@ -33,28 +33,24 @@ playbook has YAML syntax [yet another markup language]
 
 This document presents an Ansible playbook structured to manage user information. Below are the details for two individuals:
 
-1. **User: Sivakumar**
-   - **Date of Birth:** September 9, 2023
-   - **Address:**
-     - **Line 1:** Vivek Street
-     - **Line 2:** Sanath Nagar
-     - **City:** Hyderabad
-   - **Email:** info@joindevops.com
-
-2. **User: Ramesh**
-   - **Date of Birth:** 33333
-   - **Addresses:**
-     - **Address Set 1:**
-       - **Line 1:** Vivek
-       - **Line 2:** Sanath
-       - **City:** HYD1
-     - **Address Set 2:**
-       - **Line 1:** Vivek Street 2
-       - **Line 2:** Sanath Nagar
-       - **City:** HYD2
-   - **Email:** info@joindevops.com
-
-This playbook enables efficient organization and management of user data within an Ansible environment.
+the below is ansible playbook
+- name: sivakuamr
+  dob: "2023-09-09"
+  address:
+    address-line1: vivek strret
+    address-line2: sanath nagar
+    city: HYD
+  email: info@joindevops.com
+- name: ramesh
+  dob: "33333"
+  address:
+  - address-line1: vivek
+    address-line2: sanath
+    city: hyd1
+  - address-line1: vivek strret2
+    address-line2: sanath nagar
+    city: HYD2
+  email: info@joindevops.com
     
   - 
    
