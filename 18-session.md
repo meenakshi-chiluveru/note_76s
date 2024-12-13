@@ -26,3 +26,35 @@ This command allows you to connect to a specified remote server and install the 
 
 By using this command, you can streamline the installation process of the Nginx web server on your remote server, enhancing your overall deployment efficiency with Ansible.
 
+ansible -i public_ip, all -e ansible_user=centos -e ansible_password=DevOps321 --become -m service -a "name=nginx state=started" - to start the service
+
+playbook: a file of modules/collections
+playbook has YAML syntax [yet another markup language]
+
+This document presents an Ansible playbook structured to manage user information. Below are the details for two individuals:
+
+1. **User: Sivakumar**
+   - **Date of Birth:** September 9, 2023
+   - **Address:**
+     - **Line 1:** Vivek Street
+     - **Line 2:** Sanath Nagar
+     - **City:** Hyderabad
+   - **Email:** info@joindevops.com
+
+2. **User: Ramesh**
+   - **Date of Birth:** 33333
+   - **Addresses:**
+     - **Address Set 1:**
+       - **Line 1:** Vivek
+       - **Line 2:** Sanath
+       - **City:** HYD1
+     - **Address Set 2:**
+       - **Line 1:** Vivek Street 2
+       - **Line 2:** Sanath Nagar
+       - **City:** HYD2
+   - **Email:** info@joindevops.com
+
+This playbook enables efficient organization and management of user data within an Ansible environment.
+    
+  - 
+   
