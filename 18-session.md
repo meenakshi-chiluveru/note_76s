@@ -11,9 +11,9 @@ In Ansible, commands are executed using modules, which are reusable scripts that
 To effectively install a package using Ansible modules, you can utilize the following command:
 
 ```bash
-ansible -i public_ip, all -e ansible_user=centos -e ansible_password=DevOps321 -m yum "name=nginx state=present"
+ansible -i public_ip, all -e ansible_user=centos -e ansible_password=DevOps321 --become -m yum -a "name=nginx state=present"
 ```
-
+there is no sudo command in ansible we have give --become to becoming root user
 This command allows you to connect to a specified remote server and install the Nginx web server. Let’s break down the key components for a clearer understanding:
 
 - **ansible**: This is the primary command-line tool used for managing and interacting with remote machines via Ansible.
@@ -25,3 +25,4 @@ This command allows you to connect to a specified remote server and install the 
 - **"name=nginx state=present"**: This command portion indicates that you want to install the `nginx` package, ensuring that its state is set to 'present'—meaning it will be installed if it's not already available on the system.
 
 By using this command, you can streamline the installation process of the Nginx web server on your remote server, enhancing your overall deployment efficiency with Ansible.
+
