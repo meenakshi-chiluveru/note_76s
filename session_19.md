@@ -17,6 +17,11 @@ ansible features
 4. clone the repo and run the playbook - ansible-playbook -i inventory.ini -e ansible_user=centos -e
  ansible_password=DevOps321 03-multyplay.yaml
 
+vriables in ansible
+
+variables can be given by vars
+task level variables can be override play level variables
+
 
  
  
