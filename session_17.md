@@ -58,5 +58,71 @@ If you want to launch multiple instances simultaneously and keep a record of the
 
 By following these detailed steps, you can securely manage AWS users and efficiently launch EC2 instances while adhering to best practices in security and resource management.
 
-I TWO WAYS WE CAN CEATE EC2- INSTANCES THROUGH CLI
-FIRST ONE IS BY CONFIGURE USER AND SECOND ONE IS ADDING ROLES TO EC2 INSTANCES SECOND IS MORE SECURE THAN FIRST ONE BECAUSE THE EC2 IINSTANCE CANNOT STORE THE ACCESS KEY AND SECRET KEY SAFELY SO SECOND ONE THE BEST WAY
+There are two primary methods for creating EC2 instances through the Command Line Interface (CLI). 
+
+The first method involves configuring a user with the necessary permissions. While this approach is straightforward, it has its drawbacks; specifically, EC2 instances may require access keys and secret keys to authenticate API requests. This means that if these credentials are stored on the instance itself, they could be exposed, leading to potential security vulnerabilities.
+
+The second method involves assigning appropriate IAM roles to the EC2 instances. This approach is generally considered more secure because it eliminates the need for access keys and secret keys to be stored directly on the instance. Instead, the IAM role provides temporary security credentials for API requests. Because these credentials are handled and rotated automatically by AWS, this method significantly reduces the risk of unauthorized access and is therefore recommended as the best practice for managing permissions on EC2 instances. 
+
+Overall, while both methods can effectively create EC2 instances, using IAM roles enhances security and streamlines access management.
+
+#vscode
+#!/bin/bash
+AMI=ami-0b4f379183e5706b9
+SG_ID=sg-02cfa8ece2d41bfd1
+
+INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" 
+"cart" "shipping" "payment" "dispatch" "web")
+for i in "${INSTANCES[@]}"
+do 
+   if [ $i == "mongodb" ] ||  [ $i == "mysql" ] ||  [ $i == "shipping" ]
+   then
+      INSTANCE_TYPE="t3.small"
+    else
+      INSTANCE_TYPE="t2.micro" 
+    fi
+
+    aws ec2 run-instances --image-id ami-0b4f379183e5706b9 --instance-type $INSTANCE_TYPE 
+    --security-group-ids sg-02cfa8ece2d41bfd1
+done
+the above is shellscript is to create ec2 instance at a time using for loop
+we need ip adrees to create records
+#!/bin/bash
+AMI=ami-0b4f379183e5706b9
+SG_ID=sg-02cfa8ece2d41bfd1
+
+INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" 
+"cart" "shipping" "payment" "dispatch" "web")
+for i in "${INSTANCES[@]}"
+do 
+  
+   if [ $i == "mongodb" ] ||  [ $i == "mysql" ] ||  [ $i == "shipping" ]
+   then
+      INSTANCE_TYPE="t3.small"
+    else
+      INSTANCE_TYPE="t2.micro" 
+    fi
+
+    
+    IP_ADDRESS=$(aws ec2 run-instances --image-id $AMI --instance-type $INSTANCE_TYPE --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query 'Instances[0].PrivateIpAddress' --output text)
+    echo "$i: $IP_ADDRESS"
+done
+# aws route53 command to create record shell script
+aws route53 change-resource-record-sets \
+  --hosted-zone-id 1234567890ABC \
+  --change-batch '
+  {
+    "Comment": "Testing creating a record set"
+    ,"Changes": [{
+      "Action"              : "CREATE"
+      ,"ResourceRecordSet"  : {
+        "Name"              : "'" $ENV "'.company.com"
+        ,"Type"             : "CNAME"
+        ,"TTL"              : 120
+        ,"ResourceRecords"  : [{
+            "Value"         : "'" $DNS "'"
+        }]
+      }
+    }]
+  }
+  '
