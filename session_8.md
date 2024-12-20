@@ -705,3 +705,4 @@ Caching can utilize various storage mechanisms, including in-memory storage opti
 
 In summary, caching and technologies like Redis play pivotal roles in modern computing, fostering enhanced performance and user experience across a wide range of applications..
 
+we have update aws name servers into hostinger
