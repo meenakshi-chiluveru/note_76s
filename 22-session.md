@@ -63,11 +63,21 @@ Create a local and remote repository named roboshop-ansible-roles and add the re
 4.create tasks folder under mongodb
 5. create main.yaml file under roles folder
 6.under tasks create main.yaml file
-* in main.yaml which is under roles directory write below code
+To properly configure the Ansible playbook for your role, you need to create or edit the `main.yaml` file located in the `roles` directory. Follow these steps to write the necessary code:
 
- yaml
- 
-  - name: "install {{component}}"
-  hosts: "{{component}}""
+1. Open the `main.yaml` file within the appropriate role directory.
+2. Add the following code snippet to define the playbook settings:
+
+```yaml
+- name: "Install {{component}}"
+  hosts: "{{component}}"
   roles:
-  - "{{component}}"
+    - "{{component}}"
+```
+
+### Explanation of the Code:
+- `name`: This defines the title of the playbook task you are creating. The `{{component}}` variable will be replaced with the actual name of the component being installed, providing a clear description when the playbook runs.
+- `hosts`: This specifies the target hosts where the role should be applied. Again, the `{{component}}` variable will dynamically indicate which hosts to target based on the component defined.
+- `roles`: This section lists the roles that will be executed. The `{{component}}` variable indicates that the role corresponding to the specified component will be applied.
+
+Make sure to replace `{{component}}` with the actual component name when you execute the playbook.
