@@ -83,47 +83,50 @@ To properly configure the Ansible playbook for your role, you need to create or 
 Make sure to replace `{{component}}` with the actual component name when you execute the playbook
 
 3. Create a file named `main.yaml` within the `tasks` folder. In this file, include a comprehensive list of all the tasks that need to be performed. Make sure to detail the tasks clearly for easy understanding and implementation.
-
 ```yaml
-/tasks/main.yaml
-5. - name: Copy MongoDB repository configuration file
-   ansible.builtin.copy:
-     # Specify the source of the MongoDB repository file
-     src: mongo.repo
-     # Define the destination path where the repository file will be placed
-     dest: /etc/yum.repos.d/mongo.repo
+# 4. /tasks/main.yaml
+- name: Copy MongoDB repository configuration file
+  ansible.builtin.copy:
+    # Specifies the source file to be copied from the local machine
+    src: mongo.repo
+    # Destination path where the repo file will be placed on the target machine
+    dest: /etc/yum.repos.d/mongo.repo
+    # Set file permissions and ownership if necessary (optional)
+    mode: '0644'
 
 - name: Install MongoDB package
-   ansible.builtin.package:
-     # Name of the package to install for MongoDB
-     name: mongodb-org
-     # Ensure that the package is present on the system
-     state: present
+  ansible.builtin.package:
+    # The package name for MongoDB that will be installed via the package manager
+    name: mongodb-org
+    # Ensures the package is present on the system
+    state: present
 
 - name: Start and enable MongoDB service
-   ansible.builtin.service:
-     # The name of the service to handle
-     name: mongod
-     # Ensure the service is started
-     state: started
-     # Enable the service to start on boot
-     enabled: yes
+  ansible.builtin.service:
+    # The name of the service that needs to be managed
+    name: mongod
+    # Ensures the service is started
+    state: started
+    # Enables the service to start on boot
+    enabled: yes
 
-- name: Configure MongoDB to allow remote connections
-   ansible.builtin.replace:
-     # Specify the path to the MongoDB configuration file
-     path: /etc/mongod.conf
-     # Regular expression to match the existing binding address for local connections
-     regexp: '127.0.0.1'
-     # Replace the local binding address with a wildcard to allow remote access
-     replace: '0.0.0.0'
+- name: Allow remote connections to MongoDB
+  ansible.builtin.replace:
+    # The path to the configuration file that will be modified
+    path: /etc/mongod.conf
+    # Regular expression used to find the line that restricts connections
+    regexp: '127.0.0.1'
+    # The replacement text to allow connections from any IP address
+    replace: '0.0.0.0'
 
 - name: Restart MongoDB service to apply configuration changes
-   ansible.builtin.service:
-     # The name of the service to restart
-     name: mongod
-     # Ensure the service is restarted to apply new configurations
-     state: restarted
-```
+  ansible.builtin.service:
+    # The name of the service to be restarted
+    name: mongod
+    # Restarts the service to ensure changes take effect
+    state: restarted
+``` 
 
-This version provides additional context and clarity regarding each task, including the purpose of each action and the significance of the parameters used.
+This version provides clearer explanations for each task, including comments for better understanding and optional settings such as file permissions.
+
+
