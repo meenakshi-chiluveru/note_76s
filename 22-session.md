@@ -80,4 +80,6 @@ To properly configure the Ansible playbook for your role, you need to create or 
 - `hosts`: This specifies the target hosts where the role should be applied. Again, the `{{component}}` variable will dynamically indicate which hosts to target based on the component defined.
 - `roles`: This section lists the roles that will be executed. The `{{component}}` variable indicates that the role corresponding to the specified component will be applied.
 
-Make sure to replace `{{component}}` with the actual component name when you execute the playbook.
+Make sure to replace `{{component}}` with the actual component name when you execute the playbook
+
+3. Create a file named `main.yaml` within the `tasks` folder. In this file, include a comprehensive list of all the tasks that need to be performed. Make sure to detail the tasks clearly for easy understanding and implementation.
