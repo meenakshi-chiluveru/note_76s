@@ -58,3 +58,16 @@ lab for ansible roles
 =================
 
 Create a local and remote repository named roboshop-ansible-roles and add the remote URL to the local repository. Include an inventory file in the roboshop-ansible-roles repository.
+2. create roles folder in roboshop- ansible-roles folder which is very important and has everything in it
+3. create mongodb folder under roles folder 
+4.create tasks folder under mongodb
+5. create main.yaml file under roles folder
+6.under tasks create main.yaml file
+* in main.yaml which is under roles directory write below code
+
+ yaml
+ 
+  - name: "install {{component}}"
+  hosts: "{{component}}""
+  roles:
+  - "{{component}}"
