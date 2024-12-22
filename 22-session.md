@@ -83,3 +83,47 @@ To properly configure the Ansible playbook for your role, you need to create or 
 Make sure to replace `{{component}}` with the actual component name when you execute the playbook
 
 3. Create a file named `main.yaml` within the `tasks` folder. In this file, include a comprehensive list of all the tasks that need to be performed. Make sure to detail the tasks clearly for easy understanding and implementation.
+
+```yaml
+/tasks/main.yaml
+5. - name: Copy MongoDB repository configuration file
+   ansible.builtin.copy:
+     # Specify the source of the MongoDB repository file
+     src: mongo.repo
+     # Define the destination path where the repository file will be placed
+     dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install MongoDB package
+   ansible.builtin.package:
+     # Name of the package to install for MongoDB
+     name: mongodb-org
+     # Ensure that the package is present on the system
+     state: present
+
+- name: Start and enable MongoDB service
+   ansible.builtin.service:
+     # The name of the service to handle
+     name: mongod
+     # Ensure the service is started
+     state: started
+     # Enable the service to start on boot
+     enabled: yes
+
+- name: Configure MongoDB to allow remote connections
+   ansible.builtin.replace:
+     # Specify the path to the MongoDB configuration file
+     path: /etc/mongod.conf
+     # Regular expression to match the existing binding address for local connections
+     regexp: '127.0.0.1'
+     # Replace the local binding address with a wildcard to allow remote access
+     replace: '0.0.0.0'
+
+- name: Restart MongoDB service to apply configuration changes
+   ansible.builtin.service:
+     # The name of the service to restart
+     name: mongod
+     # Ensure the service is restarted to apply new configurations
+     state: restarted
+```
+
+This version provides additional context and clarity regarding each task, including the purpose of each action and the significance of the parameters used.
