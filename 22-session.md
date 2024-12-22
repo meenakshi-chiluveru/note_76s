@@ -129,4 +129,20 @@ Make sure to replace `{{component}}` with the actual component name when you exe
 
 This version provides clearer explanations for each task, including comments for better understanding and optional settings such as file permissions.
 
+To execute Ansible playbooks that utilize roles, you can use the following command in your terminal:
 
+```yaml
+ansible-playbook -i inventory.ini -e ansible_user=centos -e ansible_password=DevOps321 -e component=mongodb main.yaml
+```
+
+In this command:
+
+- `ansible-playbook` is the Ansible command used to run playbook files.
+- `-i inventory.ini` specifies the inventory file that lists the servers on which the playbook will be executed.
+- The `-e` flag allows you to pass extra variables to the playbook. In this case:
+  - `ansible_user=centos` sets the username for SSH access to the servers.
+  - `ansible_password=DevOps321` provides the password for that user account.
+  - `component=mongodb` defines a variable named `component` with the value `mongodb`, which can be referenced within the playbook.
+- `main.yaml` is the name of the playbook you are executing, which is located in the roles folder. This playbook will contain tasks that are designed to configure or manage the specified component, in this case, MongoDB. 
+
+Make sure to have the necessary permissions and that the Ansible environment is correctly set up to avoid any execution issues.
