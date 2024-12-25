@@ -58,6 +58,7 @@ In this snippet, the playbook specifies a task titled "install {{component}}," w
 
 This detailed configuration not only organizes your files but also enhances flexibility and maintainability in your Ansible setup for the catalogue role.
 =======================================================
+yaml
 - name: "Copy {{component}}.service"
   ansible.builtin.template
     src: "{{component}}.service.j2"
