@@ -57,3 +57,10 @@ Next, when you define your main YAML playbook, you will integrate this variable.
 In this snippet, the playbook specifies a task titled "install {{component}}," where `{{component}}` is a placeholder for the actual component name that will be defined during execution. The `hosts` directive is set to `{{component}}` as well, allowing the playbook to target the appropriate servers. The `vars` section includes a reference to "variables.yaml," ensuring that the variables defined there are accessible. The `become: yes` directive indicates that the tasks will be executed with elevated privileges, which is often necessary for installation tasks. Finally, the `roles` section specifies the role corresponding to the component being installed, further utilizing the dynamic component placeholder.
 
 This detailed configuration not only organizes your files but also enhances flexibility and maintainability in your Ansible setup for the catalogue role.
+=======================================================
+- name: "Copy {{component}}.service"
+  ansible.builtin.template
+    src: "{{component}}.service.j2"
+    dest: "/etc/systemd/system/{{component}}.service"
+
+3.In the project, there is a requirement to copy a systemd service file using Ansible. The specific Ansible module used for this task is the `ansible.builtin.template` module. The source template file is named `{{component}}.service.j2`, and it will be copied to the destination path `/etc/systemd/system/{{component}}.service`. Additionally, it has been instructed to place this module within a common folder that contains a configuration file called `systemd.yaml`, while also including a comment indicating the purpose of the copy module.
