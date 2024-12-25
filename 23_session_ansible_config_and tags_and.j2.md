@@ -10,3 +10,22 @@ The `ansible.cfg` file is the configuration file for Ansible, which defines vari
 
 This order of precedence means that the configuration file found in the current directory will override the one in the home directory, and the home directory configuration will override the system-wide configuration.
 
+# lab
+To set up your Ansible configuration, first, create a file named `ansible.cfg` in the current directory. Within this file, include the following lines under the `[defaults]` section:
+
+```
+[defaults]
+inventory=inventory.ini
+ansible_user=centos
+```
+
+Next, create an `inventory.ini` file, where you will specify the variables for all hosts. Within this file, add the following lines to define the Ansible password:
+
+```
+[all:vars]
+ansible_password=DevOps321
+```
+
+This setup allows you to define the inventory and user details required for your Ansible automation tasks.
+
+
