@@ -1,14 +1,17 @@
-developer develops the code and push to git hub and we take code and and build and deploy to server
-code is build by maven and reviewd by sonar software if the code reeviw will succes then that code artifact will upload to nexus repo
-when artifact uploaded into nexus docker comes into picture and create docker image for our application and stored in docker registry after that we deployed that image to kubernetes cluster
+In the software development lifecycle, the initial step begins with a developer crafting the application code. Once the coding is complete, the developer pushes this code to a version control system, specifically GitHub. This repository serves as the source of truth where the latest code resides, allowing the team to collaborate effectively.
 
-when developer put the code in github we need to take code we have to build and deploy in old days we do manually now a days we are doing using automation tool jenkins
+Next, we retrieve the code from GitHub to initiate the build and deployment process. In our current setup, we utilize Maven, a powerful build automation tool, which helps compile the code and package it into a suitable format for deployment. Maven takes care of resolving dependencies and ensuring that the build environment is correctly configured.
 
-in jenkins we are going to create pipeline for to build and deploy the code
+To maintain high standards of code quality, we incorporate SonarQube, a continuous inspection tool that performs static code analysis. This tool evaluates various aspects of the code, including code smells, bugs, and vulnerabilities. If the code passes the SonarQube review, we are assured of its quality, and we proceed to upload the resulting code artifact to the Nexus repository, which serves as a centralized storage location for our build artifacts.
 
-jenkins will integrated with all tools jenkins take code from github and jenkins will talk to maven to build the code
+Once the artifact is securely stored in Nexus, we transition to containerization using Docker. In this phase, we create a Docker image of our application, which encapsulates all the necessary components, libraries, and the application itself into a single executable unit. This image is then stored in a Docker registry, which is a repository for Docker images, facilitating easy access and management.
 
-jenkins will integrate with sonar software to perform the code review
-jenkins will integrated with nexus to upload artifact one upload done jenkins will integrate docker to craete application image once the image created jenkins will push docker image to docker regisrty once completed upolading image to docker registry jenkins will trigger kubernetes to deploy
+Following the creation of the Docker image, we deploy it to a Kubernetes cluster, an orchestration platform that manages containerized applications. Kubernetes provides the necessary infrastructure for scaling, load balancing, and ensuring high availability for our applications.
 
-when docker image is available in docker registry that will be dowload in to kubernetes and the application will be deployed in to kubernetes cluster
+In contrast to the manual deployment processes of the past, we now leverage Jenkins, a robust automation server, to streamline our development and deployment pipeline. Jenkins allows us to create a comprehensive pipeline that automates each step of the process, greatly enhancing efficiency and reducing human error.
+
+The Jenkins pipeline works by first integrating with GitHub to fetch the latest version of the code. After retrieval, it triggers Maven to build the code, packaging it into the specified format. Upon completion of the build process, Jenkins connects with SonarQube to carry out the code review. This automated evaluation ensures that any quality issues are identified and addressed promptly.
+
+Once the code review is successfully completed, Jenkins uploads the artifact to Nexus, marking a critical step in the deployment pipeline. With the artifact now available, Jenkins invokes Docker to generate the application’s Docker image. After the image has been created, Jenkins pushes it to the Docker registry, making it ready for deployment.
+
+Finally, after the Docker image is successfully uploaded to the registry, Jenkins triggers the Kubernetes deployment process. Kubernetes retrieves the Docker image from the registry and deploys it within the cluster environment, ensuring that our application is operational and accessible to users. This entire automated pipeline not only speeds up the development cycle but also improves the quality and reliability of our deployments.
