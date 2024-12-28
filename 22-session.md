@@ -146,3 +146,35 @@ In this command:
 - `main.yaml` is the name of the playbook you are executing, which is located in the roles folder. This playbook will contain tasks that are designed to configure or manage the specified component, in this case, MongoDB. 
 
 Make sure to have the necessary permissions and that the Ansible environment is correctly set up to avoid any execution issues.
+====================================================================================================================================================
+
+1. first create inventory.ini
+[mongodb]
+mongodb.daws80.online
+[catalogue]
+catalogue.daws80.online
+[user]
+user.daws80.online
+[cart]
+cart.daws80.online
+[web]
+web.daws80.online
+[redis]
+redis.daws80.online
+[mysql]
+mysql.daws80.online
+[shipping]
+shipping.daws80.online
+[rabbitmq]
+rabbitmq.daws80.online
+[payment]
+payment.daws80.online
+
+2. create roles folder which has all playbooks create mongodb - tasks -main.yaml
+3. main.yaml - in this file we have to give all tasks
+4. we have main main.yaml under roboshop-ansibile-roles
+ - name: "install {{component}}"
+  hosts: "{{component}}"
+  roles:
+  - "{{component}}"
+ 
