@@ -1,86 +1,84 @@
-Terraform --> popular infrastructure as a code
+**Terraform Overview**
 
-Ansible --> configutation management, configutation as a code
+Terraform is a widely-used tool for managing infrastructure as code, allowing users to define and provision data center infrastructure using a high-level configuration language. It is especially popular for managing hybrid cloud environments and works seamlessly with numerous cloud service providers, including Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), and others.
 
-manual
-shell script
-Ansible --> preferred
+**Installation Requirements**
 
+To get started with Terraform, you need to set it up on your local machine. This involves two key steps:
 
+1. **Install Terraform**: Download and install the appropriate version of Terraform for your operating system from the official website.
+   
+2. **Install AWS CLI**: The AWS Command Line Interface (CLI) must also be installed, as it enables interaction with AWS services through command-line commands. Follow the appropriate installation guides provided by AWS.
 
-version control
-	if you keep code in Git, we can maintain history and you can get back previous versions
-	
-consisten infrastructure
-	same code will work with all environments, so infrastructure is consistent across all environments
-	
-automated infra --> CRUD
-create
-read
-update
-delete
+**Creating an EC2 Instance**
 
-inventory management
-cost optimisation
-	create when required, stop or delete when not required
-automatic dependency management
-	we can create resources, terraform will take care of dependency management
-modules
-	you can create terraform code as modules, other projects can use it without writing from the scratch
-	
-declartive way of creative infrastructure
-	what is declartive? whatever you write you will get provided if you write correct syntax. easy syntax, no need to follow sequence
-	
-used for hybrid cloud and many other providers
-	AWS, Azure, GCP, etc.
+*To create an EC2 (Elastic Compute Cloud) instance, follow these foundational steps:*
 
-terraform --> it will check all the paths you have given in environment variables, if it is available then your command will work
+**Understanding HCL (HashiCorp Configuration Language)**
 
-1. install terraform
-2. install aws cli
+HCL is the configuration language used by Terraform. It enables users to describe their infrastructure in a readable format. Key components of HCL include:
 
-let us create one EC2 instance
---------------------------------
+- **Variables**: Placeholders for values that can be reused in your configuration.
+- **Conditions**: Logic to manage the resource creation process.
+- **Loops**: Constructs to iterate over data structures.
+- **Functions**: Built-in capabilities to manipulate data.
+- **Data Types**: Definitions of the kind of data, such as strings, numbers, or lists.
 
-HCL --> Hashicorp configuration language
+**Basic Resource Syntax**
 
-variables
-conditions
-loops
-functions
-data types
+To declare a resource in Terraform, you use the following structure:
 
-resource "what-resource" "name-your-resource-your-wish" {
-
-
+```hcl
+resource "resource_type" "resource_name" {
+  # Configuration parameters go here
 }
+```
 
-terraform requires AWS provider configuration to create AWS infra
+**Provider Configuration**
 
-.sh, .yaml, .tf
+Before Terraform can create any resources on AWS, you must configure the AWS provider properly. This involves specifying your credentials and the region in which you want to deploy resources. 
 
-1. create IAM admin user
-2. create access key and secret key
-3. aws configure
+**File Extensions**
 
-sg --> optional, then default security group will be attached
+Terraform configurations are typically saved with the following file extensions:
+- `.sh` (Shell scripts for executing commands)
+- `.yaml` (YAML format for configuration)
+- `.tf` (Terraform configuration files)
 
-where to run terraform command, wherever .tf file exists you have to run terraform command in that directory
+**AWS Access Configuration**
 
-terraform init --> intialize the provider,
-.terraform folder is created and provider downloaded
+To enable Terraform to manage resources in AWS, you should complete the following steps:
 
-terraform plan --> just a plan, will not create actually
+1. **Create an IAM Admin User**: Set up an Identity and Access Management (IAM) user in AWS that has administrator permissions.
+  
+2. **Create Access Key and Secret Key**: Generate an access key ID and secret access key for the IAM user.
+  
+3. **Run aws configure**: Use the AWS CLI command `aws configure` to input your access key, secret key, default region, and output format.
 
-terraform apply --> now it will create resource
+*Note: Security groups (sg) are optional; if not defined, the default security group will be attached to your resources.*
 
-variables
--------------
+**Executing Terraform Commands**
 
-variable "name-of-your-variable"{
-	type = data-type
-	default = "default-value" # we can always override
+Terraform commands should be executed in the directory where your `.tf` file is located. The typical command sequence to manage your infrastructure is as follows:
+
+1. **`terraform init`**: This command initializes your Terraform environment. It configures the necessary provider and creates a `.terraform` directory where all Terraform-related files and plugins are stored.
+
+2. **`terraform plan`**: This command generates a detailed execution plan, indicating what resources will be created, modified, or destroyed, without making any changes to the infrastructure.
+
+3. **`terraform apply`**: This is the command that actually provisions resources according to your configuration. After reviewing the plan, you can approve the changes, and Terraform will create the specified resources.
+
+**Defining Variables in Terraform**
+
+Variables in Terraform allow for dynamic configuration in your infrastructure management:
+
+```hcl
+variable "variable_name" {
+  type    = data_type # such as string, number, list, etc.
+  default = "default_value" # this value can be overridden during execution
 }
+```
+
+By following this framework, you can efficiently manage infrastructure using Terraform, tailoring resources to fit your specific requirements.
 
 	
 	
